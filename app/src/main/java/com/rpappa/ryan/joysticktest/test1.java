@@ -4,10 +4,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 public class test1 extends AppCompatActivity {
     private JoystickView joystick;
     private SliderView slider;
+    private Button fireButton;
+
+    public int sliderValue  = 0;
+    public int joyPower = 0;
+    public int joyAngle = 0;
+    public boolean fire = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +27,14 @@ public class test1 extends AppCompatActivity {
         setContentView(R.layout.activity_test1);
         joystick = (JoystickView) findViewById(R.id.joy);
         slider = (SliderView) findViewById(R.id.slide1);
+        fireButton = (Button) findViewById(R.id.button);
+
+        fireButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fire = true;
+            }
+        });
 
         //Event listener that always returns the variation of the angle in degrees, motion power in percentage and direction of movement
         joystick.setOnJoystickMoveListener(new JoystickView.OnJoystickMoveListener() {
@@ -24,6 +44,8 @@ public class test1 extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 System.out.println("angle: " + angle);
                 System.out.println("power: " + power);
+                joyAngle = angle;
+                joyPower = power;
             }
         }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
@@ -34,8 +56,44 @@ public class test1 extends AppCompatActivity {
                 // TODO Auto-generated method stub
 //                System.out.println("angle: " + angle);
                 System.out.println("power: " + power);
+                sliderValue = power;
+
             }
         }, SliderView.DEFAULT_LOOP_INTERVAL);
+        Thread udpLoop = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (1==1) {
+                    String jsonMessage = "{\"joyAngle\":" + joyAngle + ",\"joyPower\":" + joyPower + ",\"cannonPower\":" + sliderValue + ",\"fire\":" + fire + "}";
+                    fire = false;
+                    final byte[] message = jsonMessage.getBytes();
+//                    System.out.println(message);
+
+
+                    Thread t = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                InetAddress address = InetAddress.getByName("192.168.110.127");
+                                DatagramPacket packet = new DatagramPacket(message, message.length, address, 5000);
+                                DatagramSocket datagramSocket = new DatagramSocket();
+                                datagramSocket.send(packet);
+                            } catch (Exception e) {
+                                System.err.println(e);
+                            }
+                        }
+                    });
+                    t.start();
+                    try {
+                        Thread.sleep(50);
+                    } catch (Exception e) {
+                        System.err.println(e);
+                    }
+
+                }
+            }
+        });
+        udpLoop.start();
     }
 
     @Override

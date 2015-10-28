@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Ryan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.0\support-annotations-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="C:\Users\Ryan\Documents\GitHub\google-services\android\JoystickTest\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.0-49307f57beb4a105d5d2c155db67458b2662d57e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Ryan\Documents\JoystickTest\Android Code\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="C:\Users\Ryan\Documents\JoystickTest\Android Code\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-462dac7d64b0ffe1a6c7ce42edd41b946a19214f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Ryan\Documents\GitHub\google-services\android\JoystickTest\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="C:\Users\Ryan\Documents\GitHub\google-services\android\JoystickTest\app\build\intermediates\pre-dexed\debug\classes-41d0dd731f906dc73b0a2dc2e59d0a03f3806754.jar" />
+    </item>
+    <item
+        jar="C:\Users\Ryan\Documents\JoystickTest\Android Code\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="C:\Users\Ryan\Documents\JoystickTest\Android Code\app\build\intermediates\pre-dexed\debug\classes-e53edcb917cd27c983311d7f0b960b0766637484.jar" />
+    </item>
+    <item
+        jar="C:\Users\Ryan\Documents\GitHub\google-services\android\JoystickTest\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
+        <dex dex="C:\Users\Ryan\Documents\GitHub\google-services\android\JoystickTest\app\build\intermediates\pre-dexed\debug\classes-cafcd3ea38d5cffc18fddcc67b86b0cef2501236.jar" />
+    </item>
+    <item
+        jar="C:\Users\Ryan\Documents\GitHub\google-services\android\JoystickTest\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="C:\Users\Ryan\Documents\GitHub\google-services\android\JoystickTest\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-cae75a330f90d970c5c88b31ac3739356515c224.jar" />
+    </item>
+    <item
+        jar="C:\Users\Ryan\Documents\JoystickTest\Android Code\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
+        <dex dex="C:\Users\Ryan\Documents\JoystickTest\Android Code\app\build\intermediates\pre-dexed\debug\classes-11d3617bc70f1aa354a12727355a27a3b51890ee.jar" />
+    </item>
+
+</items>

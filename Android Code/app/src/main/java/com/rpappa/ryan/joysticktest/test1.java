@@ -1,11 +1,16 @@
 package com.rpappa.ryan.joysticktest;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -21,10 +26,24 @@ public class test1 extends AppCompatActivity {
     public int joyAngle = 0;
     public boolean fire = false;
 
+    public static String ip = "192.168.110.127";
+    public static int port = 5000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test1);
+
+        Context context = getApplicationContext();
+        final SharedPreferences sharedPref = context.getSharedPreferences(
+                "com.rpappa.ryan.joysticktest", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPref.edit();
+        final String ipKey = "com.rpappa.ryan.joysticktest.ip";
+        final String portKey = "com.rpappa.ryan.joysticktest.port";
+
+        ip = sharedPref.getString(ipKey, "192.168.110.127");
+        port = sharedPref.getInt(portKey, 5000);
+
         joystick = (JoystickView) findViewById(R.id.joy);
         slider = (SliderView) findViewById(R.id.slide1);
         fireButton = (Button) findViewById(R.id.button);
@@ -74,8 +93,8 @@ public class test1 extends AppCompatActivity {
                         @Override
                         public void run() {
                             try {
-                                InetAddress address = InetAddress.getByName("192.168.110.127");
-                                DatagramPacket packet = new DatagramPacket(message, message.length, address, 5000);
+                                InetAddress address = InetAddress.getByName(ip);
+                                DatagramPacket packet = new DatagramPacket(message, message.length, address, port);
                                 DatagramSocket datagramSocket = new DatagramSocket();
                                 datagramSocket.send(packet);
                             } catch (Exception e) {
@@ -94,6 +113,28 @@ public class test1 extends AppCompatActivity {
             }
         });
         udpLoop.start();
+
+//        final RelativeLayout main = (RelativeLayout) findViewById(R.id.main);
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+////                   Thread.sleep(1000);
+//                } catch (Exception e) {
+//                    System.err.println(e);
+//                }
+//                while(1==1) {
+//                    System.out.println(getWindow().getCurrentFocus());
+////                    main.requestFocus();
+//                    try {
+//                        Thread.sleep(500);
+//                    } catch (Exception e) {
+//                        System.err.println(e);
+//                    }
+//                }
+//            }
+//        }).start();
     }
 
     @Override
@@ -112,9 +153,32 @@ public class test1 extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(test1.this, SettingsActivity.class);
+            test1.this.startActivity(intent);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+//    @Override
+//    public boolean onGenericMotionEvent(MotionEvent event) {
+//        if (event.isFromSource(InputDevice.SOURCE_CLASS_JOYSTICK)) {
+//            if (event.getAction() == MotionEvent.ACTION_MOVE) {
+//                // process the joystick movement...
+//                return true;
+//            }
+//        }
+//        if (event.isFromSource(InputDevice.SOURCE_CLASS_POINTER)) {
+//            switch (event.getAction()) {
+//                case MotionEvent.ACTION_HOVER_MOVE:
+//                    // process the mouse hover movement...
+//                    return true;
+//                case MotionEvent.ACTION_SCROLL:
+//                    // process the scroll wheel movement...
+//                    return true;
+//            }
+//        }
+//        return super.onGenericMotionEvent(event);
+//    }
 }

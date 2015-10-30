@@ -83,7 +83,7 @@ public class test1 extends AppCompatActivity {
             @Override
             public void run() {
                 while (1==1) {
-                    String jsonMessage = "{\"joyAngle\":" + joyAngle + ",\"joyPower\":" + joyPower + ",\"cannonPower\":" + sliderValue + ",\"fire\":" + fire + "}";
+                    String jsonMessage = "{\"joyAngle\":" + joyAngle + ",\"joyPower\":" + ((float)joyPower)/100 + ",\"cannonPower\":" + sliderValue + ",\"fire\":" + fire + "}";
                     fire = false;
                     final byte[] message = jsonMessage.getBytes();
 //                    System.out.println(message);
@@ -104,7 +104,7 @@ public class test1 extends AppCompatActivity {
                     });
                     t.start();
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(200);
                     } catch (Exception e) {
                         System.err.println(e);
                     }
